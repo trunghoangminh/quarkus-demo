@@ -1,6 +1,7 @@
-package com.tma.training.product;
+package com.tma.training.product.nonblocking;
 
 import com.tma.training.common.Result;
+import com.tma.training.product.ProductService;
 import com.tma.training.product.rest.CreateProduct;
 import com.tma.training.product.rest.UpdateProduct;
 import io.smallrye.mutiny.Uni;

@@ -1,6 +1,7 @@
 package com.tma.training.product;
 
 import com.tma.training.product.entity.Product;
+import com.tma.training.product.nonblocking.NonblockingProductController;
 import com.tma.training.product.rest.CreateProduct;
 import com.tma.training.product.rest.GetProduct;
 import com.tma.training.product.rest.ListProduct;
@@ -12,8 +13,6 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -27,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 @TestHTTPEndpoint(NonblockingProductController.class)
-@TestInstance(Lifecycle.PER_CLASS)
 public class NonblockingProductControllerTestCase {
 
     private String productId = null;

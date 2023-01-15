@@ -29,6 +29,6 @@ public class ResponseLoggingFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-        log.infof("Path: %s | Method: %s | Data: %s", httpRequest.path(), httpRequest.method(), mapper.writeValueAsString(responseContext.getEntity()));
+        log.infof("Request %s %s | Data: %s", httpRequest.method(), httpRequest.path(), mapper.writeValueAsString(responseContext.getEntity()));
     }
 }

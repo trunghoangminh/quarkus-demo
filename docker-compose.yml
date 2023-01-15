@@ -1,0 +1,61 @@
+version: "3"
+services:
+  shared-mongo:
+    image: "mongo:5.0"
+    container_name: shared-mongo
+    hostname: shared-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./data/shared_mongo:/data/db"
+    networks:
+      -  quarkus-demo-network
+
+  # DEV container
+  quarkus-demo-dev:
+    image: "quarkus/quarkus-demo-dev"
+    container_name: quarkus-demo-dev
+    hostname: quarkus-demo-dev
+    entrypoint: tail -F /dev/null
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+     - ".:/work"
+     - "~/.m2:/home/jboss/.m2"
+    depends_on:
+      - shared-mongo
+    networks:
+      - quarkus-demo-network
+
+  # JVM container
+  quarkus-demo-jvm:
+    image: "quarkus/quarkus-demo-jvm"
+    container_name: quarkus-demo-jvm
+    hostname: quarkus-demo-jvm
+    ports:
+      - "8080:8080"
+    depends_on:
+      - shared-mongo
+    networks:
+      - quarkus-demo-network
+
+  # Native container
+  quarkus-demo-native:
+    image: "quarkus/quarkus-demo-native"
+    container_name: quarkus-demo-native
+    hostname: quarkus-demo-native
+    ports:
+      - "8080:8080"
+    depends_on:
+      - shared-mongo
+    networks:
+      - quarkus-demo-network
+
+networks:
+  quarkus-demo-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
