@@ -9,6 +9,7 @@ services:
     volumes:
       - "./data/shared_mongo:/data/db"
     networks:
+
       -  quarkus-demo-network
 
   # DEV container
@@ -33,6 +34,8 @@ services:
     image: "quarkus/quarkus-demo-jvm"
     container_name: quarkus-demo-jvm
     hostname: quarkus-demo-jvm
+    environment:
+      WAIT_HOSTS: shared-mongo:27017
     ports:
       - "8080:8080"
     depends_on:
@@ -45,6 +48,8 @@ services:
     image: "quarkus/quarkus-demo-native"
     container_name: quarkus-demo-native
     hostname: quarkus-demo-native
+    environment:
+      WAIT_HOSTS: shared-mongo:27017
     ports:
       - "8080:8080"
     depends_on:
