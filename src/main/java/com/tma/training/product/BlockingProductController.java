@@ -2,8 +2,6 @@ package com.tma.training.product;
 
 import com.tma.training.common.Result;
 import com.tma.training.product.rest.CreateProduct;
-import com.tma.training.product.rest.GetProduct;
-import com.tma.training.product.rest.ListProduct;
 import com.tma.training.product.rest.UpdateProduct;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
@@ -17,7 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+import javax.ws.rs.core.Response;
 
 /**
  * This class handles
@@ -35,8 +33,8 @@ public class BlockingProductController {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Result<List<ListProduct.ResponseVO>> getAll() {
-        return new Result<>(productService.getAll());
+    public Response getAll() {
+        return Response.ok(new Result<>(productService.getAll())).build();
     }
 
     /**
@@ -48,8 +46,8 @@ public class BlockingProductController {
     @GET
     @Path("/{productId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Result<GetProduct.ResponseVO> getProduct(@PathParam("productId") String productId) {
-        return new Result<>(productService.getProduct(productId));
+    public Response getProduct(@PathParam("productId") String productId) {
+        return Response.ok(new Result<>(productService.getProduct(productId))).build();
     }
 
     /**
@@ -61,8 +59,8 @@ public class BlockingProductController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Result<CreateProduct.ResponseVO> createProduct(@RequestBody CreateProduct.RequestVO productVO) {
-        return new Result<>(productService.createProduct(productVO));
+    public Response createProduct(@RequestBody CreateProduct.RequestVO productVO) {
+        return Response.ok(new Result<>(productService.createProduct(productVO))).build();
     }
 
     /**
@@ -76,8 +74,8 @@ public class BlockingProductController {
     @Path("/{productId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Result<UpdateProduct.ResponseVO> updateProduct(@PathParam("productId") String productId, @RequestBody UpdateProduct.RequestVO productVO) {
-        return new Result<>(productService.updateProduct(productId, productVO));
+    public Response updateProduct(@PathParam("productId") String productId, @RequestBody UpdateProduct.RequestVO productVO) {
+        return Response.ok(new Result<>(productService.updateProduct(productId, productVO))).build();
     }
 
     /**
@@ -89,7 +87,7 @@ public class BlockingProductController {
     @DELETE
     @Path("/{productId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Result<String> deleteProduct(@PathParam("productId") String productId) {
-        return new Result<>(productService.deleteProduct(productId));
+    public Response deleteProduct(@PathParam("productId") String productId) {
+        return Response.ok(new Result<>(productService.deleteProduct(productId))).build();
     }
 }
