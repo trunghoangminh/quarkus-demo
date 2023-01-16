@@ -9,7 +9,6 @@ services:
     volumes:
       - "./data/shared_mongo:/data/db"
     networks:
-
       -  quarkus-demo-network
 
   # DEV container

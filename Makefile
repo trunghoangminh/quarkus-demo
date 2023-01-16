@@ -16,7 +16,7 @@ run-dev:
 	docker-compose up -d --force-recreate quarkus-demo-dev
 
 exec-dev:
-	docker exec -it quarkus-demo-dev bash -c 'cd /work && ./mvnw quarkus:dev -Dquarkus.http.host=0.0.0.0 -DdebugHost=0.0.0.0 -DskipTests';
+	docker exec -it -uroot quarkus-demo-dev bash -c 'cd /work && ./mvnw quarkus:dev -Dquarkus.http.host=0.0.0.0 -DdebugHost=0.0.0.0 -DskipTests';
 
 run-jvm:
 	docker-compose up -d --force-recreate quarkus-demo-jvm
