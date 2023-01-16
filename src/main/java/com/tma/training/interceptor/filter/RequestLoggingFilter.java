@@ -1,6 +1,7 @@
 package com.tma.training.interceptor.filter;
 
 import io.quarkus.runtime.BlockingOperationControl;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
 import lombok.extern.jbosslog.JBossLog;
 
@@ -28,13 +29,16 @@ public class RequestLoggingFilter implements ContainerRequestFilter {
             byte[] data = is.readAllBytes();
             String body = new String(data, StandardCharsets.UTF_8);
             requestContext.setEntityStream(new ByteArrayInputStream(data));
-            log.infof("Request %s %s | Data: %s", httpRequest.method(), httpRequest.path(), body);
+            log.infof("HTTP request %s %s %s", httpRequest.method(), httpRequest.path(), httpRequest.version(), body);
         } else {
             // Log non-blocking request
-            log.infof("Request %s %s | Data: %s", httpRequest.method(), httpRequest.path(), "");
-//            httpRequest.body(buffer -> {
-//                log.infof("Request %s %s | Data: %s", httpRequest.method(), httpRequest.path(), buffer.result());
-//            });
+            if (HttpMethod.GET.equals(httpRequest.method()) || HttpMethod.DELETE.equals(httpRequest.method())) {
+                log.infof("HTTP request %s %s %s", httpRequest.method(), httpRequest.path(), httpRequest.version());
+            } else {
+                httpRequest.body(buffer -> {
+                    log.infof("HTTP request %s %s %s%nRequest body:%n%s", httpRequest.method(), httpRequest.path(), httpRequest.version(), buffer.result());
+                });
+            }
         }
     }
 }
