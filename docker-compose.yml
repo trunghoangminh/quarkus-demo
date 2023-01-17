@@ -1,9 +1,9 @@
 version: "3"
 services:
-  shared-mongo:
+  mongodb:
     image: "mongo:5.0"
-    container_name: shared-mongo
-    hostname: shared-mongo
+    container_name: mongodb
+    hostname: mongodb
     ports:
       - "27017:27017"
     volumes:
@@ -24,7 +24,7 @@ services:
      - ".:/work"
      - "~/.m2:/home/jboss/.m2"
     depends_on:
-      - shared-mongo
+      - mongodb
     networks:
       - quarkus-demo-network
 
@@ -34,11 +34,11 @@ services:
     container_name: quarkus-demo-jvm
     hostname: quarkus-demo-jvm
     environment:
-      WAIT_HOSTS: shared-mongo:27017
+      WAIT_HOSTS: mongodb:27017
     ports:
       - "8080:8080"
     depends_on:
-      - shared-mongo
+      - mongodb
     networks:
       - quarkus-demo-network
 
@@ -48,11 +48,11 @@ services:
     container_name: quarkus-demo-native
     hostname: quarkus-demo-native
     environment:
-      WAIT_HOSTS: shared-mongo:27017
+      WAIT_HOSTS: mongodb:27017
     ports:
       - "8080:8080"
     depends_on:
-      - shared-mongo
+      - mongodb
     networks:
       - quarkus-demo-network
 
