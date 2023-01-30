@@ -35,4 +35,4 @@ clean-containers:
 	docker-compose down
 
 clean-all: clean-containers
-	rm -rf data
+	sudo rm -rf data
