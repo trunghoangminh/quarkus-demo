@@ -60,7 +60,7 @@ services:
   spring-boot-demo:
     image: "spring/spring-boot-demo"
     container_name: spring-boot-demo
-    hostname: quarkus-demo-native
+    hostname: spring-boot-demo
     environment:
       WAIT_HOSTS: mongodb:27017
     ports:

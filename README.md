@@ -41,3 +41,16 @@ $ make build-native-images
 ```shell script
 $ make run-native
 ```
+### 2.3 Run Spring Boot application
+#### 2.3.1 Build Spring Boot application
+```shell script
+$ make build-spring-boot-images
+```
+#### 2.3.2 Run Spring Boot docker container
+```shell script
+$ make run-spring-boot
+```
+### 2.4 Build all images
+```shell script
+$ make build-all-images
+```
