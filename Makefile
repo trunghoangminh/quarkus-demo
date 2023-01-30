@@ -11,7 +11,10 @@ build-native-images:
 	./mvnw package -Pnative -Dquarkus.native.container-build=true -DskipTests; \
 	docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-demo-native .
 
-build-all-images: build-dev-images build-jvm-images build-native-images
+build-spring-boot-images:
+	docker build -f spring-boot/Dockerfile -t spring/spring-boot-demo .
+
+build-all-images: build-dev-images build-jvm-images build-native-images build-spring-boot-images build-spring-boot-images
 
 run-dev:
 	docker-compose up -d --force-recreate quarkus-demo-dev
@@ -24,6 +27,9 @@ run-jvm:
 
 run-native:
 	docker-compose up -d --force-recreate quarkus-demo-native
+
+run-spring-boot:
+	docker-compose up -d --force-recreate spring-boot-demo
 
 clean-containers:
 	docker-compose down

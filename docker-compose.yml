@@ -7,9 +7,9 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - "./data/shared_mongo:/data/db"
+      - "./data/mongo:/data/db"
     networks:
-      - quarkus-demo-network
+      - demo-network
 
   # DEV container
   quarkus-demo-dev:
@@ -27,7 +27,7 @@ services:
     depends_on:
       - mongodb
     networks:
-      - quarkus-demo-network
+      - demo-network
 
   # JVM container
   quarkus-demo-jvm:
@@ -41,7 +41,7 @@ services:
     depends_on:
       - mongodb
     networks:
-      - quarkus-demo-network
+      - demo-network
 
   # Native container
   quarkus-demo-native:
@@ -55,10 +55,23 @@ services:
     depends_on:
       - mongodb
     networks:
-      - quarkus-demo-network
+      - demo-network
+
+  spring-boot-demo:
+    image: "spring/spring-boot-demo"
+    container_name: spring-boot-demo
+    hostname: quarkus-demo-native
+    environment:
+      WAIT_HOSTS: mongodb:27017
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    networks:
+      - demo-network
 
 networks:
-  quarkus-demo-network:
+  demo-network:
     driver: bridge
     ipam:
       driver: default
