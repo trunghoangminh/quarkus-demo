@@ -7,15 +7,20 @@ import lombok.extern.jbosslog.JBossLog;
 
 import javax.enterprise.event.Observes;
 import java.math.BigDecimal;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Init default resources
  */
 @JBossLog
 public class InitResources {
+
+    @ConfigProperty(name = "product.skip.init.default-data")
+    boolean skipInitDefaultData;
+
     void onStart(@Observes StartupEvent ev) {
         log.info("The application is starting...");
-        if (Product.findAll().count() == 0) {
+        if (Product.findAll().count() == 0 && skipInitDefaultData) {
             Product laptop = new Product();
             laptop.setName("Macbook M1");
             laptop.setDescription("Laptop with Chip Apple Silicon");
