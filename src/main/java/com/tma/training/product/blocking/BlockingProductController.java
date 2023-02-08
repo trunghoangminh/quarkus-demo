@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * This class handles
+ * This class handles blocking mode
  */
 @Path("/api/v1/products/blocking")
 public class BlockingProductController {

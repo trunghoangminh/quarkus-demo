@@ -19,6 +19,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * This class handles non-blocking mode
+ */
 @Path("/api/v1/products/non-blocking")
 public class NonblockingProductController {
 
