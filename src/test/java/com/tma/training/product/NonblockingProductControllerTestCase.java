@@ -32,7 +32,6 @@ public class NonblockingProductControllerTestCase {
 
     @BeforeEach
     public void init() {
-        Product.deleteAll();
         Product laptop = new Product();
         laptop.setName("Macbook M1");
         laptop.setDescription("Laptop with Chip Apple Silicon");
