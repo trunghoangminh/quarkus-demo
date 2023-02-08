@@ -4,15 +4,17 @@ import com.tma.training.product.entity.Product;
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 import lombok.extern.jbosslog.JBossLog;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import java.math.BigDecimal;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Init default resources
  */
 @JBossLog
+@ApplicationScoped
 public class InitResources {
 
     @ConfigProperty(name = "product.skip.init.default-data")
