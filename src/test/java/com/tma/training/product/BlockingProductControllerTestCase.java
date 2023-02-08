@@ -72,7 +72,7 @@ public class BlockingProductControllerTestCase {
     }
 
     /**
-     * Test API GET | /api/v1/product/non-blocking/{productId}
+     * Test API GET | /api/v1/product/blocking/{productId}
      */
     @Test
     public void testGetProduct() {
