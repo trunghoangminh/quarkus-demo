@@ -1,8 +1,8 @@
 # Quarkus Demo
+##Prerequisites
+OS: Ubuntu or Window Subsystem
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Tools: Docker, Make
 
 ## 1. Running the application in DEV mode
 ### 1.1 Build DEV docker images
