@@ -20,7 +20,7 @@ public class InitResources {
 
     void onStart(@Observes StartupEvent ev) {
         log.info("The application is starting...");
-        if (Product.findAll().count() == 0 && skipInitDefaultData) {
+        if (Product.findAll().count() == 0 && !skipInitDefaultData) {
             Product laptop = new Product();
             laptop.setName("Macbook M1");
             laptop.setDescription("Laptop with Chip Apple Silicon");
