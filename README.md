@@ -2,7 +2,7 @@
 ##Prerequisites
 OS: Ubuntu or Window Subsystem
 
-Tools: Docker, Make
+Tools: Docker, Docker compose, Make
 
 ## 1. Running the application in DEV mode
 ### 1.1 Build DEV docker images
