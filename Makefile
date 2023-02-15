@@ -4,11 +4,11 @@ build-dev-images:
 	docker build -f src/main/docker/Dockerfile.dev -t quarkus/quarkus-demo-dev .
 
 build-jvm-images:
-	./mvnw package -DskipTests; \
+	./mvnw clean package -DskipTests; \
 	docker build -f src/main/docker/Dockerfile.jvm -t quarkus/quarkus-demo-jvm .
 
 build-native-images:
-	./mvnw package -Pnative -Dquarkus.native.container-build=true -DskipTests; \
+	./mvnw clean package -Pnative -Dquarkus.native.container-build=true -DskipTests; \
 	docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-demo-native .
 
 build-spring-boot-images:
